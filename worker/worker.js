@@ -89,6 +89,9 @@ async function handleStats(vid, env) {
   for (const h of user.hours || []) hoursByType[h.type] = h.hours; // deja en secondes
 
   const { airports, centers } = aggregate(sessions);
+  const dates = sessions.map((s) => s.createdAt).sort();
+  const oldestSession = dates[0] || null;
+  const newestSession = dates[dates.length - 1] || null;
 
   const body = JSON.stringify({
     vid,
@@ -99,6 +102,8 @@ async function handleStats(vid, env) {
     airports,
     centers,
     sessionCount: sessions.length,
+    oldestSession,
+    newestSession,
   });
 
   const resp = new Response(body, { headers: { 'Content-Type': 'application/json' } });

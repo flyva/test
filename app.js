@@ -6,6 +6,14 @@ const fmt = (seconds) => {
   return `${h}h${String(m).padStart(2, '0')}`;
 };
 
+const dateFmt = (iso) => new Date(iso).toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+function renderCoverage(data) {
+  const el = $('coverage');
+  if (!data.oldestSession) { el.textContent = ''; return; }
+  el.textContent = `Détail par terrain basé sur les sessions du ${dateFmt(data.oldestSession)} au ${dateFmt(data.newestSession)} (l'API IVAO ne conserve pas tout l'historique).`;
+}
+
 function renderTotals(data) {
   const types = { pilot: 'Pilote', atc: 'ATC', staff: 'Staff' };
   $('totals').innerHTML = Object.entries(types).map(([k, label]) => `
@@ -40,6 +48,7 @@ async function search(vid) {
     const r = await fetch(`${API_BASE}/api/stats?vid=${encodeURIComponent(vid)}`);
     const data = await r.json();
     if (!r.ok) throw new Error(data.error || 'Erreur inconnue.');
+    renderCoverage(data);
     renderTotals(data);
     renderAirports(data);
     renderCenters(data);

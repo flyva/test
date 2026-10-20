@@ -48,6 +48,8 @@ button:disabled { opacity: .6; cursor: default; }
 #state { margin-top: 16px; color: var(--muted); font-size: 14px; }
 #state.error { color: #f08a8a; }
 
+.coverage { color: var(--muted); font-size: 12px; margin: 16px 0 0; }
+
 .totals {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
