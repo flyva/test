@@ -1,0 +1,7 @@
+name = "ivao-stats-proxy"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# La cle d'API IVAO n'est PAS ici : elle se regle avec
+#   wrangler secret put IVAO_API_KEY
+# (voir le README a la racine du projet)

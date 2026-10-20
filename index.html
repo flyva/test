@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Statistiques IVAO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1>Statistiques de contrôle IVAO</h1>
+  <p class="hint">Entre un VID pour voir ses heures, par terrain et par position.</p>
+
+  <form id="form">
+    <input id="vid" inputmode="numeric" pattern="[0-9]{5,7}" placeholder="VID, ex. 482807" required>
+    <button type="submit">Chercher</button>
+  </form>
+
+  <div id="state"></div>
+  <div id="result" hidden>
+    <div class="totals" id="totals"></div>
+    <section>
+      <h2>Par terrain</h2>
+      <div id="airports" class="cards"></div>
+    </section>
+    <section id="centersSection" hidden>
+      <h2>Centres / FIR</h2>
+      <div id="centers" class="cards"></div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
